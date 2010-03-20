@@ -2,6 +2,7 @@ package uk.co.ziazoo.wibble
 {
   import flash.display.DisplayObjectContainer;
   import flash.events.Event;
+  import flash.utils.Dictionary;
   
   import uk.co.ziazoo.injector.IInjector;
   import uk.co.ziazoo.injector.IMappingBuilder;
@@ -14,13 +15,13 @@ package uk.co.ziazoo.wibble
     public var lastTarget:Object;
     
     protected var injector:IInjector;
-    protected var maps:Vector.<MediatorMapper>;
+    protected var maps:Array;
     protected var container:DisplayObjectContainer;
     
     public function Context()
     {
       injector = Injector.createInjector();
-      maps = new Vector.<MediatorMapper>;
+      maps = [];
     }
     
     public function set view( value:DisplayObjectContainer ):void
@@ -57,9 +58,9 @@ package uk.co.ziazoo.wibble
     
     protected function whenCreated(view:Class):MediatorMapper
     {
-      var mapper:MediatorMapper = new MediatorMapper();
+      var mapper:MediatorMapper = new MediatorMapper(view);
       maps.push( mapper );
-      return mapper.whenCreated(view);
+      return mapper;
     }
   }
 }

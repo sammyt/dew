@@ -7,14 +7,9 @@ package uk.co.ziazoo.wibble
     public var view:Class;
     public var mediator:Class;
     
-    public function MediatorMapper()
+    public function MediatorMapper(view:Class)
     {
-    }
-    
-    public function whenCreated(view:Class):MediatorMapper
-    {
-      this.view = view; 
-      return this;
+      this.view = view;
     }
     
     public function mediateWith(mediator:Class):void
