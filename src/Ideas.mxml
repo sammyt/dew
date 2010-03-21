@@ -12,8 +12,11 @@
   </fx:Script>
   
   <fx:Declarations>
-    <thingy:MyContext view="{this}" />
+    <thingy:MyContext container="{this}" />
   </fx:Declarations>
+  
+  <thingy:MyView
+    skinClass="org.thingy.SimpleLook" />
   
   <thingy:MyView
     skinClass="org.thingy.SimpleLook" />

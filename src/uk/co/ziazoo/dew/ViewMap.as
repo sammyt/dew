@@ -1,13 +1,13 @@
-package uk.co.ziazoo.wibble
+package uk.co.ziazoo.dew
 {
   import flash.utils.Dictionary;
 
-  public class MediatorMapper
+  public class ViewMap
   {
     public var view:Class;
     public var mediator:Class;
     
-    public function MediatorMapper(view:Class)
+    public function ViewMap(view:Class)
     {
       this.view = view;
     }

@@ -1,16 +1,14 @@
-package uk.co.ziazoo.wibble
+package uk.co.ziazoo.dew
 {
   import uk.co.ziazoo.injector.IProvider;
   import uk.co.ziazoo.injector.IScope;
   
-  public class ContextScope implements IScope
+  internal class ContextScope implements IScope
   {
-    private var context:Context;
-    private var instance:Object;
+    private var target:Object;
     
-    public function ContextScope( context:Context )
+    public function ContextScope()
     {
-      this.context = context;
     }
     
     public function wrap(provider:IProvider):IScope
@@ -30,7 +28,12 @@ package uk.co.ziazoo.wibble
     
     public function getObject():Object
     {
-      return context.lastTarget;
+      return target;
+    }
+    
+    internal function setTarget(value:Object):void
+    {
+      target = value;
     }
   }
 }
