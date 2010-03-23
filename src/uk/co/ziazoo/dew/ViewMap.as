@@ -12,7 +12,7 @@ package uk.co.ziazoo.dew
       this.view = view;
     }
     
-    public function mediateWith(mediator:Class):void
+    public function through(mediator:Class):void
     {
       this.mediator = mediator;
     }

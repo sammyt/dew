@@ -45,6 +45,7 @@ package uk.co.ziazoo.dew
       if( value )
       {
         addContextListeners();
+        configureMediators();
       }
     }
     
@@ -74,6 +75,11 @@ package uk.co.ziazoo.dew
       }
     }
     
+    public function configureMediators():void
+    {
+      
+    }
+    
     protected function onViewRemoved(event:Event):void
     {
       
@@ -99,10 +105,13 @@ package uk.co.ziazoo.dew
     /**
      * @inheritDoc
      */
-    public function whenCreated(viewType:Class):ViewMap
+    public function mediate(viewType:Class):ViewMap
     {
       var map:ViewMap = new ViewMap(viewType);
       maps.push(map);
+      
+      getInjector().map(viewType).inScope(getScope());
+      
       return map;
     }
     

@@ -21,11 +21,16 @@ package uk.co.ziazoo.dew
     /**
      * DSL to map views to their mediators
      */ 
-    function whenCreated(viewType:Class):ViewMap;
+    function mediate(viewType:Class):ViewMap;
     
     /**
      * Injector instance used to create mediators
      */ 
     function getInjector():IInjector;
+    
+    /**
+     * override this function and setup contexts mediators
+     */ 
+    function configureMediators():void;
   }
 }
