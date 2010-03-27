@@ -2,8 +2,10 @@ package uk.co.ziazoo.dew
 {
   import flash.display.DisplayObjectContainer;
   
+  import uk.co.ziazoo.command.ICommandMap;
   import uk.co.ziazoo.injector.IInjector;
   import uk.co.ziazoo.injector.IScope;
+  import uk.co.ziazoo.notifier.INotificationBus;
 
   public interface IContext
   {
@@ -26,11 +28,17 @@ package uk.co.ziazoo.dew
     /**
      * Injector instance used to create mediators
      */ 
-    function getInjector():IInjector;
+    function get injector():IInjector;
+    
+    function get commands():ICommandMap;
+    
+    function get bus():INotificationBus;
     
     /**
      * override this function and setup contexts mediators
      */ 
     function configureMediators():void;
+    
+    function configureCommands():void
   }
 }

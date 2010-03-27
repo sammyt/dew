@@ -3,8 +3,13 @@ package uk.co.ziazoo.dew
   import flash.display.DisplayObjectContainer;
   import flash.events.Event;
   
+  import uk.co.ziazoo.command.CommandMap;
+  import uk.co.ziazoo.command.ICommandMap;
   import uk.co.ziazoo.injector.IInjector;
   import uk.co.ziazoo.injector.IScope;
+  import uk.co.ziazoo.injector.impl.Injector;
+  import uk.co.ziazoo.notifier.INotificationBus;
+  import uk.co.ziazoo.notifier.NotificationBus;
 
   public class Context implements IContext
   {
@@ -12,6 +17,10 @@ package uk.co.ziazoo.dew
      * @private
      */  
     protected var _container:DisplayObjectContainer;
+    
+    private var _injector:IInjector;
+    private var _commands:ICommandMap;
+    private var _bus:INotificationBus;
     
     /**
      * scope used for views created in context
@@ -26,6 +35,14 @@ package uk.co.ziazoo.dew
     public function Context()
     {
       maps = [];
+
+      _injector = Injector.createInjector();
+      
+      _bus = new NotificationBus();
+      _injector.map(INotificationBus).toInstance(_bus);
+      
+      _commands = new CommandMap(_injector, _bus);
+      injector.map(ICommandMap).toInstance(_commands);
     }
     
     /**
@@ -41,12 +58,15 @@ package uk.co.ziazoo.dew
      */
     public function set container(value:DisplayObjectContainer):void
     {
-      _container = value;
-      if( value )
+      if( _container )
       {
-        addContextListeners();
-        configureMediators();
+        return;
       }
+      _container = value;
+      
+      addContextListeners();
+      configureMediators();
+      configureCommands();
     }
     
     protected function addContextListeners():void
@@ -80,6 +100,11 @@ package uk.co.ziazoo.dew
       
     }
     
+    public function configureCommands():void
+    {
+      
+    }
+    
     protected function onViewRemoved(event:Event):void
     {
       
@@ -87,7 +112,7 @@ package uk.co.ziazoo.dew
     
     protected function injectMediator(mediatorType:Class):void
     {
-      getInjector().inject(mediatorType);
+      injector.inject(mediatorType);
     }
     
     /**
@@ -110,14 +135,24 @@ package uk.co.ziazoo.dew
       var map:ViewMap = new ViewMap(viewType);
       maps.push(map);
       
-      getInjector().map(viewType).inScope(getScope());
+      injector.map(viewType).inScope(getScope());
       
       return map;
     }
     
-    public function getInjector():IInjector
+    public function get injector():IInjector
     {
-      return null;
+      return _injector;
+    }
+    
+    public function get commands():ICommandMap
+    {
+      return _commands;
+    }
+    
+    public function get bus():INotificationBus
+    {
+      return _bus;
     }
   }
 }
