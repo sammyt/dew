@@ -5,13 +5,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>dew</artifactId>
 	<groupId>uk.co.ziazoo</groupId>
-	<version>0.1-SNAPSHOT</version>
+	<version>0.2-SNAPSHOT</version>
 	<packaging>swc</packaging>
 	<name>Dew</name>
 
 	<properties>
 		<flexversion>3.5.0.12683</flexversion>
-		<mojoversion>3.5.0</mojoversion>
+		<mojoversion>3.6</mojoversion>
 	</properties>
 
 	<build>
@@ -45,7 +45,7 @@
 		<dependency>
 			<groupId>uk.co.ziazoo</groupId>
 			<artifactId>dawn-complete</artifactId>
-			<version>0.8-SNAPSHOT</version>
+			<version>0.8.5-SNAPSHOT</version>
 			<type>swc</type>
 			<scope>external</scope>
 		</dependency>

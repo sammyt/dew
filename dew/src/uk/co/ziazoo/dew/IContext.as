@@ -5,7 +5,7 @@ package uk.co.ziazoo.dew
   import uk.co.ziazoo.command.ICommandMap;
   import uk.co.ziazoo.injector.IInjector;
   import uk.co.ziazoo.injector.IScope;
-  import uk.co.ziazoo.notifier.INotificationBus;
+  import uk.co.ziazoo.notifier.INotifier;
 
   public interface IContext
   {
@@ -15,30 +15,32 @@ package uk.co.ziazoo.dew
     function get container():DisplayObjectContainer;
     function set container(value:DisplayObjectContainer):void;
     
-    /**
-     * The scope used to by the injector for the views
-     */ 
-    function getScope():IScope;
+    function get creationListener():IViewCreationListener;
+    function set creationListener(value:IViewCreationListener):void;
     
     /**
-     * DSL to map views to their mediators
+     * Get the scope of this context
      */ 
-    function mediate(viewType:Class):ViewMap;
+    function getScope():IScope;
     
     /**
      * Injector instance used to create mediators
      */ 
     function get injector():IInjector;
     
+    /**
+     * Dawns command map
+     */ 
     function get commands():ICommandMap;
     
-    function get bus():INotificationBus;
+    /**
+     * Dawns notifier
+     */ 
+    function get notifier():INotifier;
     
     /**
-     * override this function and setup contexts mediators
+     * called when the contect has been setup
      */ 
-    function configureMediators():void;
-    
-    function configureCommands():void
+    function contextCreated():void;
   }
 }
