@@ -1,5 +1,6 @@
 package uk.co.ziazoo.dew
 {
+  import flash.display.DisplayObject;
   import flash.display.DisplayObjectContainer;
   import flash.events.Event;
   
@@ -42,6 +43,10 @@ package uk.co.ziazoo.dew
     
     private function onViewAdded(event:Event):void
     {
+      for each(var observer:ICreationObserver in observers)
+      {
+        observer.onViewCreated(event.target as DisplayObject);
+      }
     }
     
     private function onViewRemoved(event:Event):void

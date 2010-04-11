@@ -1,5 +1,6 @@
 package uk.co.ziazoo.dew
 { 
+  import flash.display.DisplayObject;
   import flash.display.DisplayObjectContainer;
   
   import uk.co.ziazoo.command.CommandMap;
@@ -10,7 +11,7 @@ package uk.co.ziazoo.dew
   import uk.co.ziazoo.notifier.INotifier;
   import uk.co.ziazoo.notifier.Notifier;
 
-  public class AbstractContext implements IContext 
+  public class AbstractContext implements IContext, ICreationObserver
   {
     /**
      * @private
@@ -100,6 +101,11 @@ package uk.co.ziazoo.dew
      */
     public function contextCreated():void
     {
+    }
+    
+    public function onViewCreated(view:DisplayObject):void
+    {
+      
     }
     
     /**

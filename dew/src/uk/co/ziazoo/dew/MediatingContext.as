@@ -1,5 +1,6 @@
 package uk.co.ziazoo.dew
 {
+  import flash.display.DisplayObject;
   import flash.events.Event;
 
   public class MediatingContext extends AbstractContext 
@@ -10,18 +11,26 @@ package uk.co.ziazoo.dew
       
     }
     
-    protected function onViewAdded(event:Event):void
+    override public function onViewCreated(view:DisplayObject):void
     {
-      scope.setTarget(event.target);
+      scope.setTarget(view);
       
       for each( var map:ViewMap in maps )
       {
-        if( event.target is map.view )
+        if( view is map.view )
         {
           injectMediator(map.mediator);
           break;
         }
       }
+    }
+    
+    override public function contextCreated():void
+    {
+      _creationListener = new AddedToStageListener();
+      _creationListener.container = container;
+      _creationListener.addCreationObserver(this);
+      _creationListener.startListening();
     }
     
     public function configureMediators():void
