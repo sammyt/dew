@@ -93,7 +93,13 @@ package uk.co.ziazoo.dew
         return;
       }
       _container = value;
+      preContextCreated();
       contextCreated();
+    }
+    
+    protected function preContextCreated():void
+    {
+      
     }
     
     /**

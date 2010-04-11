@@ -1,7 +1,6 @@
 package uk.co.ziazoo.dew
 {
   import flash.display.DisplayObject;
-  import flash.events.Event;
 
   public class MediatingContext extends AbstractContext 
     implements IMediatingContext
@@ -25,7 +24,7 @@ package uk.co.ziazoo.dew
       }
     }
     
-    override public function contextCreated():void
+    override protected function preContextCreated():void
     {
       _creationListener = new AddedToStageListener();
       _creationListener.container = container;

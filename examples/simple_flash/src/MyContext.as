@@ -17,8 +17,7 @@ package
     
     override public function contextCreated():void
     {
-      super.contextCreated();
       mediate(Blob).through(BlobMediator);
     }
   }
-}
+} 
