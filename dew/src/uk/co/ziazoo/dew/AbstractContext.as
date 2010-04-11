@@ -42,20 +42,11 @@ package uk.co.ziazoo.dew
     
     /**
      * @private
-     * 
-     * list of all mediated views
-     */ 
-    protected var maps:Array;
-    
-    /**
-     * @private
      */ 
     protected var _creationListener:IViewCreationListener;
     
     public function AbstractContext()
     {
-      maps = [];
-      
       _injector = Injector.createInjector();
       
       _notifier = new Notifier();
@@ -99,7 +90,10 @@ package uk.co.ziazoo.dew
     
     protected function preContextCreated():void
     {
-      
+      _creationListener = new AddedToStageListener();
+      _creationListener.container = container;
+      _creationListener.addCreationObserver(this);
+      _creationListener.startListening();
     }
     
     /**

@@ -1,13 +1,26 @@
 package uk.co.ziazoo.dew
 {
   import flash.display.DisplayObject;
+  import flash.display.DisplayObjectContainer;
 
   public class MediatingContext extends AbstractContext 
     implements IMediatingContext
   {
-    public function MediatingContext():void 
+    
+    /**
+     * @private
+     * 
+     * list of all mediated views
+     */ 
+    protected var maps:Array;
+    
+    public function MediatingContext(container:DisplayObjectContainer = null):void 
     {
-      
+      if(container)
+      {
+        this.container = container;
+      }
+      maps = [];
     }
     
     override public function onViewCreated(view:DisplayObject):void
@@ -26,10 +39,6 @@ package uk.co.ziazoo.dew
     
     override protected function preContextCreated():void
     {
-      _creationListener = new AddedToStageListener();
-      _creationListener.container = container;
-      _creationListener.addCreationObserver(this);
-      _creationListener.startListening();
     }
     
     public function configureMediators():void

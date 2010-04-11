@@ -15,7 +15,7 @@ package simple.example
     }
     
     [PostConstruct]
-    public function init():void
+    public function setUp():void
     {
       mover = new GTween(this, 0.8);
     }

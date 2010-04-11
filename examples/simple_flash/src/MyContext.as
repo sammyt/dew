@@ -11,8 +11,7 @@ package
   {
     public function MyContext(container:DisplayObjectContainer)
     {
-      super();
-      this.container = container;
+      super(container);
     }
     
     override public function contextCreated():void
