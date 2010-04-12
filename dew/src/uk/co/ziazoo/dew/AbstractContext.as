@@ -90,6 +90,8 @@ package uk.co.ziazoo.dew
     
     protected function preContextCreated():void
     {
+      scope = new ContextScope();
+      
       _creationListener = new AddedToStageListener();
       _creationListener.container = container;
       _creationListener.addCreationObserver(this);
@@ -106,18 +108,6 @@ package uk.co.ziazoo.dew
     public function onViewCreated(view:DisplayObject):void
     {
       
-    }
-    
-    /**
-     * @inheritDoc
-     */
-    public function getScope():IScope
-    {
-      if(!scope)
-      {
-        scope = new ContextScope();
-      }
-      return scope;
     }
     
     /**

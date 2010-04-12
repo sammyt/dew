@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox 
+  xmlns:mx="http://www.adobe.com/2006/mxml" 
+  width="400" height="300">
+  
+  <mx:Label text="please enter your name" />
+  <mx:TextInput id="userName" />
+  <mx:Button id="submit" label="enter" />
+</mx:VBox>

@@ -23,6 +23,12 @@ package uk.co.ziazoo.dew
       maps = [];
     }
     
+    override protected function preContextCreated():void
+    {
+      super.preContextCreated();
+      configureMediators();
+    }
+    
     override public function onViewCreated(view:DisplayObject):void
     {
       scope.setTarget(view);
@@ -35,10 +41,6 @@ package uk.co.ziazoo.dew
           break;
         }
       }
-    }
-    
-    override protected function preContextCreated():void
-    {
     }
     
     public function configureMediators():void
@@ -59,7 +61,7 @@ package uk.co.ziazoo.dew
       var map:ViewMap = new ViewMap(viewType);
       maps.push(map);
       
-      injector.map(viewType).inScope(getScope());
+      injector.map(viewType).inScope(scope);
       
       return map;
     }

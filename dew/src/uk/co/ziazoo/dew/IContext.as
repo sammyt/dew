@@ -19,11 +19,6 @@ package uk.co.ziazoo.dew
     function set creationListener(value:IViewCreationListener):void;
     
     /**
-     * Get the scope of this context
-     */ 
-    function getScope():IScope;
-    
-    /**
      * Injector instance used to create mediators
      */ 
     function get injector():IInjector;
